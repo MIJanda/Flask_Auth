@@ -1,13 +1,15 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session, url_for
 
 app = Flask(__name__)
 
 
 @app.route("/")
-def index():
+def home():
+    if "username" in session:
+        return redirect(url_for("dashboard"))
     return render_template("index.html")
 
 
-if __name__ == "__main__":
+if __name__ in "__main__":
     # todo: change to false in production
     app.run(debug=True)
